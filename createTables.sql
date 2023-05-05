@@ -6,7 +6,6 @@ CREATE TABLE games (
     guess_2 char(10),
     guess_3 char(10),
     guess_4 char(10),
-    guess_5 char(10),
     guess_5 char(10)
 );
 
