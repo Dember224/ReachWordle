@@ -3,6 +3,7 @@ from flask import session
 from wordList import word_list
 from flask import request
 from dataAccess import DataAccess
+from game import Game
 
 import os
 import psycopg2
@@ -58,7 +59,15 @@ def update_games():
     userid = data.get_user_id(username)
     if userid == creator:
         data.update_game_data(game_id=game,user_list=user_list, function=function)
-        
+
+@app.route('ventureGuess', methods= ['POST'])
+def venture_guess():
+    username=request.args.get('username')
+    game = data.retrieve_single_game(username)
+    hidden_word = game[1]
+    guess = request.args.get('guess')
+    data.guess(winner=hidden_word, guess=guess)
+
        
 
 
